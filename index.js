@@ -1,11 +1,10 @@
 const fs = require('fs');
 
 const EventEmitter = require('events');
-class MyEmitter extends EventEmitter {}
-const ParsingEmitter = new MyEmitter();
+class Emitter extends EventEmitter {}
+const ParsingEmitter = new Emitter();
 
 const Parsing = require('./src/Parsing')(ParsingEmitter);
-
 const Gardener = require('./src/Gardener');
 
 const args = process.argv.slice(2);

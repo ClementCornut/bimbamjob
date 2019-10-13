@@ -17,10 +17,10 @@ function processMower(mower) {
     for (const char of mower.moves) {
         switch(char) {
             case 'D':
-                rotate(mower, 'Right');
+                rotate(mower, 1);
                 break;
             case 'G':
-                rotate(mower, 'Left');
+                rotate(mower, -1);
                 break;
             case 'A':
                 forward(mower);
@@ -31,17 +31,10 @@ function processMower(mower) {
 
 function rotate(mower, direction) {
     index = dirArray.findIndex(dir => dir === mower.dir);
-    switch(direction) {
-        case 'Right':
-            mower.dir = dirArray[(index + 1) % 4];
-            break;
-        case 'Left':
-            index -= 1;
-            if (index === -1)
-                index = 3;
-            mower.dir = dirArray[index];
-            break;
-    }
+    index = index + direction;
+    if (index === -1)
+        index = 3;
+    mower.dir = dirArray[index % 4];
 }
 
 function forward(mower) {
